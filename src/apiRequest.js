@@ -1,12 +1,15 @@
-const apiRequest = async (url='', optionsObj=null, errmsg=null)=>{
+const apiRequest = async (url="", optionsObj=null, errmsg=null)=>{
    try{
-     const response = await fetch(url, optionsObj)
-     if(!response.ok){throw Error("data not found!")}
+     const response = await fetch(url)
+     const fetchjsondata = response.json()
+     if(!response.ok){throw Error("cant reach the server")}
+      return fetchjsondata;
    }catch(err){
-       errmsg = err.message
+      errmsg = err.message
    }finally{
-      return errmsg;
+      console.log(errmsg)
    }
+
 }
 
 export default apiRequest;

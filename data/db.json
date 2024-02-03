@@ -1,15 +1,34 @@
 {
-    "items": [
-        {
-            "checked": "",  
-            "item": "default list eg: wakeup early",
-            "clas":""
-        },
-        {
-            "checked": "",  
-            "item": "default list eg: wakeup early",
-            "clas":""
-        }
-
-    ]
+  "items": [
+    {
+      "id": 1,
+      "checked": "",
+      "item": "wakeup early",
+      "clas": ""
+    },
+    {
+      "id": 2,
+      "checked": "",
+      "item": "walk everyday",
+      "clas": ""
+    },
+    {
+      "id": 3,
+      "checked": "",
+      "item": "do exercise",
+      "clas": ""
+    },
+    {
+      "id": 4,
+      "checked": "",
+      "item": "dont skip skin care",
+      "clas": ""
+    },
+    {
+      "id": 5,
+      "checked": "",
+      "item": "apply sunscreen",
+      "clas": ""
+    }
+  ]
 }

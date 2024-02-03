@@ -2,7 +2,7 @@ import React from 'react'
 
 const AddItem = (props) => {
 
-    const {handlelistonchange, handleemptyaddKeyDown, handleemptyaddnewlist, inputRef, newlist } = props
+    const {handlelistonchange, handleaddKeyDown, handleaddnewlist, inputRef, newlist } = props
 
   return (
     <div className='  container  addItem' >
@@ -14,9 +14,9 @@ const AddItem = (props) => {
         ref={inputRef}
         value={newlist}
         onChange={(e)=>handlelistonchange(e)} 
-        onKeyDown={(e)=>handleemptyaddKeyDown(e)}
+        onKeyDown={(e)=>handleaddKeyDown(e)}
         ></input> {" "}
-        <button className='addbtn' type='submit' style={{padding:"5px", }} onClick={handleemptyaddnewlist} >add</button>
+        <button className='addbtn' type='submit' style={{padding:"5px", }} onClick={handleaddnewlist} >add</button>
          
     </div>
   )

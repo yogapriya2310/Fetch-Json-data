@@ -4,43 +4,46 @@ import Content from './Content';
 import Footer from './Footer';
 import Header from './Header';
 import './index.css';
+import apiRequest from './apiRequest';
 
 function App() {
   const [items, setItems] = useState([
      
   ]);
+  const itemlength = items.length;
   const inputRef = useRef()
   const [newlist, setnewlist] = useState('')
   const [isdata, setIsData] = useState(false)
   const [fetchError, setFetchError] = useState(null)
-  const [isLoading, setIsLoading] = useState(true) 
+  const [isLoading, setIsLoading] = useState(true)
 
   const API_URL =  'http://localhost:3500/items'
 
-  useEffect(()=>{
-    const fetchItems = async ()=>{
-      try{
-        const response = await fetch(API_URL)
-        if(!response.ok ){throw Error("data not found")}
-        const listItems = await response.json();
-        setItems(listItems)
-        setFetchError(null)
-      }
-      catch(err)
-      {
-         setFetchError(err.message)
-      }
-      finally{
-        setIsLoading(false)
-      }
-      
-    }
-    
-    setTimeout(()=>{
-      (async()=>{await fetchItems()})()
-    },2000)
+ useEffect(()=>{
 
-  }, [])
+  
+  // console.log(itemlength)
+
+   const fetchItems = async ()=>{
+    try{
+       const response = await fetch(API_URL)
+       if(!response.ok)throw Error("data not found")
+       const listitems = await response.json()
+       setItems(listitems)
+       setFetchError(null)
+    } catch(err){
+      setFetchError(err.message)
+    } finally{
+        setIsLoading(false)
+    }
+   }
+ const loadingtime = itemlength >0 ? 2000 : 2000
+  setTimeout(() => {
+    (async()=>{await fetchItems()})()
+   }, loadingtime);
+ 
+
+ },[])
 
   function handlechecked(e, inputindex)
   {
@@ -62,14 +65,25 @@ function App() {
     setIsData(false)
   }
 
-  function handleemptyaddnewlist(e)
+  const handleaddnewlist = async (e)=>
   {
    if(newlist)
    {
-     const newitem = {checked: "",  
+     const newitem = {
+     id: itemlength+1,
+     checked: "",  
      item: newlist,
      clas:""}
     setItems(previous => [...previous, newitem ])
+
+    const postOptions = {
+      method: 'POST',
+      Headers: {'Content-type':'application/json'},
+      body: JSON.stringify(newitem)
+    }
+    const result = await apiRequest(API_URL,postOptions)
+    if(result){setFetchError(result)}
+
      setnewlist("")
    inputRef.current.focus()
    }else{
@@ -82,13 +96,24 @@ function App() {
     
   }
   
-  function handleemptyaddKeyDown(e)
+  const handleaddKeyDown = async(e)=>
   {
+    const newitemKeydown = {
+      id: itemlength+1,
+      checked: "",  
+      item: newlist,
+      clas:""}
    if(newlist && e.key === "Enter")
    {
-       setItems(previous => [...previous,{checked: "",  
-   item: newlist,
-   clas:""} ])
+       setItems(previous => [...previous,newitemKeydown ])
+       const postOptions = {
+        method: 'POST',
+        Headers: {'Content-type':'application/json'},
+        body: JSON.stringify(newitemKeydown)
+      } 
+      const result = await apiRequest(API_URL,postOptions)
+      if(result){setFetchError(result)}
+
    setnewlist("")
    inputRef.current.focus()
     }
@@ -108,8 +133,8 @@ function App() {
       <Header />
       <AddItem  
          handlelistonchange = {handlelistonchange}
-         handleemptyaddKeyDown = {handleemptyaddKeyDown} 
-         handleemptyaddnewlist ={handleemptyaddnewlist}
+         handleaddKeyDown = {handleaddKeyDown} 
+         handleaddnewlist ={handleaddnewlist}
          inputRef={inputRef}
          newlist={newlist}
       />

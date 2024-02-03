@@ -1,16 +1,5 @@
 {
   "items": [
-    {
-      "id": 1,
-      "checked": "",
-      "item": "wakeup early",
-      "clas": ""
-    },
-    {
-      "id": 2,
-      "checked": "",
-      "item": "learn DSA",
-      "clas": ""
-    }
+     
   ]
 }

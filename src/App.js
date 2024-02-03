@@ -13,7 +13,7 @@ function App() {
   const [newlist, setnewlist] = useState('')
   const [isdata, setIsData] = useState(false)
   const [fetchError, setFetchError] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true) 
 
   const API_URL =  'http://localhost:3500/items'
 

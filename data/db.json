@@ -1,33 +1,27 @@
 {
   "items": [
     {
-      "id": 1,
+      "id": "1",
       "checked": "",
-      "item": "wakeup early",
+      "item": "wake up",
       "clas": ""
     },
     {
-      "id": 2,
-      "checked": "",
-      "item": "walk everyday",
+      "id": "2",
+      "checked": false,
+      "item": "ssss",
       "clas": ""
     },
     {
-      "id": 3,
-      "checked": "",
-      "item": "do exercise",
+      "id": "3",
+      "checked": false,
+      "item": "ddff",
       "clas": ""
     },
     {
-      "id": 4,
-      "checked": "",
-      "item": "dont skip skin care",
-      "clas": ""
-    },
-    {
-      "id": 5,
-      "checked": "",
-      "item": "apply sunscreen",
+      "id": "4",
+      "checked": false,
+      "item": "wtch movies",
       "clas": ""
     }
   ]

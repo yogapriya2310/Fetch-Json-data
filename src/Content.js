@@ -17,10 +17,11 @@ const Content = (props) => {
         {
             items.map((list, index)=> (
                 <li key={index} className='licontainer' >
-                <input type="checkbox" id={index} checked={list.checked} onChange={(e)=>handlechecked(e, index)} />
+                <input type="checkbox" id={index} checked={list.checked} onChange={(e)=>handlechecked(e, index, list.id)} />
                 <label htmlFor={index}  className={list.clas}   >{list.item}</label> 
                 <IoCloseCircleOutline className='deletebtn' onClick={(e)=>handledelete(e, index)}  /> <br />
            
+
 
               </li>
             ))

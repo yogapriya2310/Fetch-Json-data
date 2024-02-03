@@ -1,6 +1,6 @@
-const apiRequest = async (url='', postOptions=null, errmsg=null)=>{
+const apiRequest = async (url='', optionsObj=null, errmsg=null)=>{
    try{
-     const response = await fetch(url, postOptions)
+     const response = await fetch(url, optionsObj)
      if(!response.ok){throw Error("data not found!")}
    }catch(err){
        errmsg = err.message

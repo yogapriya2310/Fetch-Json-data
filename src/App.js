@@ -5,6 +5,7 @@ import Footer from './Footer';
 import Header from './Header';
 import './index.css';
 import apiRequest from './apiRequest';
+ 
 
 function App() {
   const [items, setItems] = useState([
@@ -16,14 +17,13 @@ function App() {
   const [isdata, setIsData] = useState(false)
   const [fetchError, setFetchError] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
-
+   
   const API_URL =  'http://localhost:3500/items'
 
  useEffect(()=>{
 
   
-  // console.log(itemlength)
-
+ 
    const fetchItems = async ()=>{
     try{
        const response = await fetch(API_URL)
@@ -45,11 +45,20 @@ function App() {
 
  },[])
 
-  function handlechecked(e, inputindex)
+  const handlechecked = async(e, inputindex, ckdid)=>
   {
   const itemss = items.map((item, index)=> index===inputindex ? {...item, checked:!item.checked, clas: item.checked ? "": "pressed"}: item )
    setItems(itemss)
-  
+   const updateitem = itemss.filter((itemval,index)=>index === inputindex)
+    const updateOptions = {
+    method: 'PATCH',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({checked:updateitem[0].checked, clas:updateitem[0].clas})
+   }
+   const updateurl =  `${API_URL}/${ckdid}`
+
+   const result = await apiRequest(updateurl,updateOptions)
+   if(result){setFetchError(result)}
   }
 
   function handledelete(e, inputindex)

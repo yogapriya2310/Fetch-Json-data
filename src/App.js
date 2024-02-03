@@ -45,28 +45,35 @@ function App() {
 
  },[])
 
-  const handlechecked = async(e, inputindex, ckdid)=>
+  const handlechecked = async(e,ckdid)=>
   {
-  const itemss = items.map((item, index)=> index===inputindex ? {...item, checked:!item.checked, clas: item.checked ? "": "pressed"}: item )
+  const itemss = items.map((item)=> item.id===ckdid ? {...item, checked:!item.checked, clas: item.checked ? "": "pressed"}: item )
    setItems(itemss)
-   const updateitem = itemss.filter((itemval,index)=>index === inputindex)
+   const updateitem = itemss.filter((itemval)=>itemval.id === ckdid)
     const updateOptions = {
     method: 'PATCH',
     headers: {'Content-Type':'application/json'},
     body: JSON.stringify({checked:updateitem[0].checked, clas:updateitem[0].clas})
    }
    const updateurl =  `${API_URL}/${ckdid}`
-
+   
    const result = await apiRequest(updateurl,updateOptions)
    if(result){setFetchError(result)}
   }
 
-  function handledelete(e, inputindex)
+  const handledelete = async(e, listdelid) =>
   {
-   const itemsdelete = items.filter((item,index)=> index!== inputindex )
+   const itemsdelete = items.filter((item)=> item.id !== listdelid )
    setItems(itemsdelete)
+   const deleteOptions = {
+    method: 'DELETE'
+   }
+   const deleteurl = `${API_URL}/${listdelid}`
+   const result = await apiRequest(deleteurl, deleteOptions)
+   if(result){setFetchError(result)}
   }
   
+
   function handlelistonchange(e)
   {
     const newli = e.target.value;
@@ -76,10 +83,11 @@ function App() {
 
   const handleaddnewlist = async (e)=>
   {
+    const id = items.length ? items[items.length-1].id +1 : 1
    if(newlist)
    {
      const newitem = {
-     id: itemlength+1,
+     id: id,
      checked: "",  
      item: newlist,
      clas:""}
@@ -107,8 +115,10 @@ function App() {
   
   const handleaddKeyDown = async(e)=>
   {
+    const id = items.length ? items[items.length-1].id +1 : 1
+
     const newitemKeydown = {
-      id: itemlength+1,
+      id: id,
       checked: "",  
       item: newlist,
       clas:""}

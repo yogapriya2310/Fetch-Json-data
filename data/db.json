@@ -1,27 +1,15 @@
 {
   "items": [
     {
-      "id": "1",
+      "id": 1,
       "checked": "",
-      "item": "wake up",
+      "item": "wakeup early",
       "clas": ""
     },
     {
-      "id": "2",
-      "checked": false,
-      "item": "ssss",
-      "clas": ""
-    },
-    {
-      "id": "3",
-      "checked": false,
-      "item": "ddff",
-      "clas": ""
-    },
-    {
-      "id": "4",
-      "checked": false,
-      "item": "wtch movies",
+      "id": 2,
+      "checked": "",
+      "item": "learn DSA",
       "clas": ""
     }
   ]

@@ -16,10 +16,10 @@ const Content = (props) => {
         <ul className='ulcontainer' >
         {
             items.map((list, index)=> (
-                <li key={index} className='licontainer' >
-                <input type="checkbox" id={index} checked={list.checked} onChange={(e)=>handlechecked(e, index, list.id)} />
-                <label htmlFor={index}  className={list.clas}   >{list.item}</label> 
-                <IoCloseCircleOutline className='deletebtn' onClick={(e)=>handledelete(e, index)}  /> <br />
+                <li key={index} id={`listitem${index+1}`} className='licontainer' >
+                <input type="checkbox" id={`item${index+1}`} name={`itemcheckname${index+1}`}   checked={list.checked} onChange={(e)=>handlechecked(e,list.id)} />
+                <label htmlFor={`item${index+1}`}  id={`itemlabel${index+1}`} name={`itemname${index+1}`}   className={list.clas}   >{list.item}</label> 
+                <IoCloseCircleOutline id={`listdelete${index+1}`}  className='deletebtn' onClick={(e)=>handledelete(e, list.id)}  /> <br />
            
 
 
